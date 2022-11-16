@@ -3,6 +3,7 @@ package main
 import (
 	"HANDIN_05/proto"
 	"bufio"
+	"context"
 	"flag"
 	"log"
 	"os"
@@ -46,7 +47,16 @@ func startClient(client *Client) {
 	for scanner.Scan() {
 		input := scanner.Text()
 
-		log.Printf("Client inputted %s\n", input)
+		number := ParseInt(input, 10, 32)
+
+		amount := &proto.Amount{
+			Amount: number,
+			Id:     int32(client.id),
+		}
+
+		bid, err := serverConnection.Bid(context.Background(), &proto.Amount{Amount: number, Id: int32(client.id)})
+
+		log.Printf("Bid returned with %s\n", bid.Ack)
 
 		//timeMessage, err := serverConnection.GetTime(context.Background(), &proto.AskForTimeMessage{ClientId: int64(client.id)})
 
