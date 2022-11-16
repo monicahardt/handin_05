@@ -1,0 +1,19 @@
+// the following three lines should always be in the proto file
+syntax = "proto3";
+package grpc_kursus; // module that you called in the go.mod
+option go_package = "grpc_kursus/proto"; // abs. path to the proto folder
+
+
+message AskForTimeMessage {
+    int64 clientId = 1; // always put the "field" equal to the number. if you add more fields, 
+                        // you have to increment the number and set them to it
+}
+
+message TimeMessage {
+    string time = 1;
+    string serverName = 2;
+}
+
+service TimeAskService {
+    rpc GetTime(AskForTimeMessage) returns (TimeMessage);
+}
