@@ -1,4 +1,4 @@
-module grpc_kursus
+module HANDIN_05
 
 go 1.19
 

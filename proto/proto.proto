@@ -4,16 +4,20 @@ package Handin_05; // module that you called in the go.mod
 option go_package = "proto/proto";
 
 
-message AskForTimeMessage {
-    int64 clientId = 1; // always put the "field" equal to the number. if you add more fields, 
-                        // you have to increment the number and set them to it
+message Amount {
+    int32 amount = 1; // always put the "field" equal to the number. if you add more fields, 
+    int32 id = 2;   // you have to increment the number and set them to it
 }
 
-message TimeMessage {
-    string time = 1;
-    string serverName = 2;
+message Ack {
+     string ack = 1;
 }
 
-service TimeAskService {
-    rpc GetTime(AskForTimeMessage) returns (TimeMessage);
+message Empty{}
+
+
+service Auction {
+    rpc Bid(Amount) returns (Ack) {}
+    rpc Result(Empty) returns (Amount) {}
 }
+
