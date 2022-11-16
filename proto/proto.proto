@@ -1,7 +1,7 @@
 // the following three lines should always be in the proto file
 syntax = "proto3";
-package grpc_kursus; // module that you called in the go.mod
-option go_package = "grpc_kursus/proto"; // abs. path to the proto folder
+package Handin_05; // module that you called in the go.mod
+option go_package = "proto/proto";
 
 
 message AskForTimeMessage {

@@ -1,9 +1,9 @@
 package main
 
 import (
+	proto "Handin_05/proto"
 	"context"
 	"flag"
-	proto "grpc_kursus/proto"
 	"log"
 	"net"
 	"strconv"
