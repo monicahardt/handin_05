@@ -1,10 +1,10 @@
 package main
 
 import (
+	"Handin_05/proto"
 	"bufio"
 	"context"
 	"flag"
-	"grpc_kursus/proto"
 	"log"
 	"os"
 	"strconv"
