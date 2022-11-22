@@ -15,8 +15,8 @@ import (
 
 type Frontend struct {
 	proto.UnimplementedAuctionServer
-	name string
-	port int
+	name    string
+	port    int
 	servers []proto.AuctionClient
 }
 
@@ -60,6 +60,7 @@ func main() {
 func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
 	fmt.Printf("Called method bid")
 	for _, s := range f.servers {
+		fmt.Println("There was a server in the slice")
 		ack, err := s.Bid(ctx, bid)
 		return ack, err
 		//What to do here about the bid? Give acknowlegement back
