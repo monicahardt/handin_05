@@ -67,8 +67,6 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 	// hvis programmet crasher
 	// returner exception
 
-	// er du i listen? hvis du ikke er i listen skal du tilføjes til listen med dit ID
-
 	if bid.Amount > s.highestBid {
 		s.highestBid = bid.Amount
 		s.highestBidder = bid.Id
@@ -85,8 +83,6 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 
 func (s *Server) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
 	return &proto.Amount{Amount: s.highestBid, Id: s.highestBidder}, nil
-
-	// return &proto.Amount{Amount: 1}, nil
 }
 
 // our enum types
