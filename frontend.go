@@ -16,7 +16,7 @@ func main(){
 		server.Bid(client.ClientConn)
 	}
 	
-	unc (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
+	func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
 	
 	}
 
