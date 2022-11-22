@@ -1,27 +1,31 @@
 package main
 
 import (
-	proto "Handin_05/proto"
+	proto "HANDIN_05/proto"
 	"context"
 	"flag"
 	"log"
 	"net"
 	"strconv"
-	"time"
 
 	"google.golang.org/grpc"
 )
 
 type Server struct {
-	proto.UnimplementedTimeAskServiceServer
-	name string
-	port int
+	proto.UnimplementedAuctionServer
+	name          string
+	port          int
+	highestBid    int32
+	highestBidder int32
 }
 
 var port = flag.Int("port", 8080, "server port number") // create the port that recieves the port that the client wants to access to
 
 func main() {
 	flag.Parse()
+
+	highestBid := 0
+	highestBidder := -1
 
 	server := &Server{
 		name: "serverName",
@@ -45,7 +49,7 @@ func startServer(server *Server) {
 
 	log.Printf("Server started")
 
-	proto.RegisterTimeAskServiceServer(grpcServer, server)
+	proto.RegisterAuctionServer(grpcServer, server)
 	serverError := grpcServer.Serve(listen)
 
 	if serverError != nil {
@@ -54,11 +58,38 @@ func startServer(server *Server) {
 
 }
 
-func (c *Server) GetTime(ctx context.Context, in *proto.AskForTimeMessage) (*proto.TimeMessage, error) {
-	log.Printf("Client with ID %d asked for the time\n", in.ClientId)
+func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
+	// tager biddet ind
+	// checker om biddet er skarpt større end det registrerede bid
+	// hvis det er, returnerer success
+	// hvis biddet er mindre end eller lig det registrerede bid
+	// returner fail
+	// hvis programmet crasher
+	// returner exception
 
-	return &proto.TimeMessage{
-		Time:       time.Now().String(),
-		ServerName: c.name,
-	}, nil
+	if bid.Amount > s.highestBid {
+		s.highestBid = bid.Amount
+		s.highestBidder = bid.Id
+
+		return &proto.Ack{Ack: success}, nil
+	} else if bid.Amount <= s.highestBid {
+		return &proto.Ack{Ack: fail}, nil
+	}
+
+	// how do we handle the exception for system crash?
+
+	return &proto.Ack{Ack: exception}, nil
 }
+
+func (s *Server) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
+	return &proto.Amount{Amount: s.highestBid, Id: s.highestBidder}, nil
+}
+
+// our enum types
+type ack string
+
+const (
+	fail      string = "fail"
+	success   string = "success"
+	exception string = "exception"
+)

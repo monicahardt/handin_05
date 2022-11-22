@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Handin_05/proto"
+	"HANDIN_05/proto"
 	"bufio"
 	"context"
 	"flag"
@@ -47,20 +47,30 @@ func startClient(client *Client) {
 	for scanner.Scan() {
 		input := scanner.Text()
 
-		log.Printf("Client inputted %s\n", input)
+		number := ParseInt(input, 10, 32)
 
-		timeMessage, err := serverConnection.GetTime(context.Background(), &proto.AskForTimeMessage{ClientId: int64(client.id)})
+		amount := &proto.Amount{
+			Amount: number,
+			Id:     int32(client.id),
+		}
+
+		bid, err := serverConnection.Bid(context.Background(), &proto.Amount{Amount: number, Id: int32(client.id)})
+
+		log.Printf("Bid returned with %s\n", bid.Ack)
+
+		//timeMessage, err := serverConnection.GetTime(context.Background(), &proto.AskForTimeMessage{ClientId: int64(client.id)})
 
 		if err != nil {
 			log.Printf("Could not get time")
 		}
 
-		log.Printf("Server says that the time is %s\n", timeMessage.Time)
+		//log.Printf("Server says that the time is %s\n", timeMessage.Time)
 	}
 
 }
+func makeBid()
 
-func getServerConnection() proto.TimeAskServiceClient {
+func getServerConnection() proto.AuctionClient {
 
 	connection, err := grpc.Dial(":"+strconv.Itoa(*serverPort), grpc.WithTransportCredentials(insecure.NewCredentials())) // remember to put the last line in the dial function
 
@@ -70,5 +80,5 @@ func getServerConnection() proto.TimeAskServiceClient {
 
 	log.Printf("Dialed")
 
-	return proto.NewTimeAskServiceClient(connection)
+	return proto.NewAuctionClient(connection)
 }

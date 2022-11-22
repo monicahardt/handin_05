@@ -1,4 +1,4 @@
-module Handin_05
+module HANDIN_05
 
 go 1.19
 
