@@ -17,9 +17,7 @@ type Frontend struct {
 	proto.UnimplementedAuctionServer
 	name string
 	port int
-	// highestBid    int32
-	// highestBidder int32
-	servers []proto.AuctionServer
+	servers []proto.AuctionClient
 }
 
 var port = flag.Int("port", 0, "server port number") // create the port that recieves the port that the client wants to access to
@@ -33,7 +31,7 @@ func main() {
 	frontend := &Frontend{
 		name:    "frondend",
 		port:    *port,
-		servers: make([]proto.AuctionServer, 0),
+		servers: make([]proto.AuctionClient, 0),
 	}
 	go startFrontend(frontend)
 	log.Printf("Frontend started")
@@ -44,9 +42,9 @@ func main() {
 		fmt.Println("Yoooooooooooo")
 		fmt.Printf("Trying to dial: %v\n", 5000+i)
 		conn, err := grpc.Dial("localhost:"+strconv.Itoa(5000+i), grpc.WithTransportCredentials(insecure.NewCredentials()))
-		// var server = proto.AuctionServer()
-		// newServer := proto.NewAuctionClient(conn)
-		// frontend.servers = append(frontend.servers, newServer)
+
+		newServer := proto.NewAuctionClient(conn)
+		frontend.servers = append(frontend.servers, newServer)
 		if err != nil {
 			fmt.Printf("Could not connect: %s", err)
 		}
