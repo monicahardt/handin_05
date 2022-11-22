@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"context"
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"strconv"
@@ -19,8 +20,8 @@ type Client struct {
 }
 
 var (
-	clientPort = flag.Int("cPort", 8081, "client port number")
-	serverPort = flag.Int("sPort", 8080, "server port number")
+	clientPort   = flag.Int("cPort", 0, "client port number")
+	frontendPort = flag.Int("fPort", 0, "frontend port number")
 )
 
 func main() {
@@ -32,47 +33,43 @@ func main() {
 		portNumber: *clientPort,
 	}
 
-	go startClient(client)
+	go connectToFrontend(client)
+	fmt.Println("Connected to frontend")
 
 	for {
 
 	}
 }
 
-func startClient(client *Client) {
-	serverConnection := getServerConnection()
+type Frontend struct {
+}
+
+func connectToFrontend(client *Client) {
+	FrontendClient := getFrontendConnection()
 
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for scanner.Scan() {
-		input := scanner.Text()
 
-		number := ParseInt(input, 10, 32)
+		//this is the input of the client who want to make a bid or see the result of the auction
+		method := scanner.Text()
 
-		amount := &proto.Amount{
-			Amount: number,
-			Id:     int32(client.id),
+		if method == "bid" {
+			amountToBid, _ := strconv.ParseInt(scanner.Text(), 10, 0)
+			FrontendClient.Bid(context.Background(), &proto.Amount{Amount: int32(amountToBid)})
+		} else if method == "result" {
+			FrontendClient.Result(context.Background(), &proto.Empty{})
+		} else {
+			//Throw e
+			fmt.Println("Invalid")
 		}
 
-		bid, err := serverConnection.Bid(context.Background(), &proto.Amount{Amount: number, Id: int32(client.id)})
-
-		log.Printf("Bid returned with %s\n", bid.Ack)
-
-		//timeMessage, err := serverConnection.GetTime(context.Background(), &proto.AskForTimeMessage{ClientId: int64(client.id)})
-
-		if err != nil {
-			log.Printf("Could not get time")
-		}
-
-		//log.Printf("Server says that the time is %s\n", timeMessage.Time)
 	}
-
 }
-func makeBid()
 
-func getServerConnection() proto.AuctionClient {
+func getFrontendConnection() proto.AuctionClient {
 
-	connection, err := grpc.Dial(":"+strconv.Itoa(*serverPort), grpc.WithTransportCredentials(insecure.NewCredentials())) // remember to put the last line in the dial function
+	connection, err := grpc.Dial(":"+strconv.Itoa(*frontendPort), grpc.WithTransportCredentials(insecure.NewCredentials())) // remember to put the last line in the dial function
 
 	if err != nil {
 		log.Fatalln("Could not dial")

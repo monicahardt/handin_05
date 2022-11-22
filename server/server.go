@@ -4,6 +4,7 @@ import (
 	proto "HANDIN_05/proto"
 	"context"
 	"flag"
+	"fmt"
 	"log"
 	"net"
 	"strconv"
@@ -19,13 +20,13 @@ type Server struct {
 	highestBidder int32
 }
 
-var port = flag.Int("port", 8080, "server port number") // create the port that recieves the port that the client wants to access to
+var port = flag.Int("port", 0, "server port number") // create the port that recieves the port that the client wants to access to
 
 func main() {
 	flag.Parse()
 
-	highestBid := 0
-	highestBidder := -1
+	// highestBid := 0
+	// highestBidder := -1
 
 	server := &Server{
 		name: "serverName",
@@ -40,11 +41,11 @@ func main() {
 }
 
 func startServer(server *Server) {
-	grpcServer := grpc.NewServer()                                  // create a new grpc server
-	listen, err := net.Listen("tcp", ":"+strconv.Itoa(server.port)) // creates the listener
+	grpcServer := grpc.NewServer()                                           // create a new grpc server
+	listen, err := net.Listen("tcp", "localhost:"+strconv.Itoa(server.port)) // creates the listener
 
 	if err != nil {
-		log.Fatalln("Count not start listener")
+		log.Fatalln("Could not start listener")
 	}
 
 	log.Printf("Server started")
@@ -59,6 +60,8 @@ func startServer(server *Server) {
 }
 
 func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
+
+	fmt.Println("Bid method in server.go was called")
 	// tager biddet ind
 	// checker om biddet er skarpt større end det registrerede bid
 	// hvis det er, returnerer success
@@ -82,6 +85,7 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 }
 
 func (s *Server) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
+	fmt.Println("result method in server.go was called")
 	return &proto.Amount{Amount: s.highestBid, Id: s.highestBidder}, nil
 }
 
