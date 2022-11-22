@@ -58,7 +58,7 @@ func startClient(client *Client) {
 	}
 
 }
-func makeBid() {}
+func makeBid()
 
 func getServerConnection() proto.AuctionClient {
 

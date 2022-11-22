@@ -72,18 +72,21 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 	if bid.Amount > s.highestBid {
 		s.highestBid = bid.Amount
 		s.highestBidder = bid.Id
+
 		return &proto.Ack{Ack: success}, nil
 	} else if bid.Amount <= s.highestBid {
 		return &proto.Ack{Ack: fail}, nil
 	}
 
+	// how do we handle the exception for system crash?
+
 	return &proto.Ack{Ack: exception}, nil
 }
 
 func (s *Server) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
-	// return s.highestBid
+	return &proto.Amount{Amount: s.highestBid, Id: s.highestBidder}, nil
 
-	return &proto.Amount{Amount: 1}, nil
+	// return &proto.Amount{Amount: 1}, nil
 }
 
 // our enum types

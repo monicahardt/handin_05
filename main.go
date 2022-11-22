@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 	for i := 0; i < 3; i++ {
@@ -10,4 +12,5 @@ func main() {
 
 func setupServers(portNum int32) {
 
+	fmt.Printf("lololol")
 }
