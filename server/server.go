@@ -60,6 +60,11 @@ func startServer(server *Server) {
 }
 
 func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
+
+	// if(s.port%5000==0){
+	// 	fmt.Println("We have uneven server that returns wierd shit")
+	// 	return &proto.Ack{Ack: exception},nil
+	// }
 	// tager biddet ind
 	// checker om biddet er skarpt større end det registrerede bid
 	// hvis det er, returnerer success
@@ -67,17 +72,15 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 	// returner fail
 	// hvis programmet crasher
 	// returner exception
-
-	if bid.Amount > s.highestBid {
-
-		s.highestBid = bid.Amount
-		s.highestBidder = bid.Id
-		log.Println("New highest bid, retun success")
-		return &proto.Ack{Ack: success}, nil
-	} else if bid.Amount <= s.highestBid {
+	if bid.Amount <= s.highestBid {
 		log.Println("return fail")
 		return &proto.Ack{Ack: fail}, nil
-	}
+	} else if bid.Amount > s.highestBid {
+		s.highestBid = bid.Amount
+		s.highestBidder = bid.Id
+		log.Println("New highest bid, return success")
+		return &proto.Ack{Ack: success}, nil
+	} 
 	log.Println("return exception")
 
 	// how do we handle the exception for system crash?

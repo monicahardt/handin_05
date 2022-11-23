@@ -57,11 +57,16 @@ func connectToFrontend(client *Client) {
 		if method == "bid" {
 			scanner.Scan()
 			amountToBid, _ := strconv.ParseInt(scanner.Text(), 10, 0)
-			FrontendClient.Bid(context.Background(), &proto.Amount{Amount: int32(amountToBid), Id: int32(client.id)})
+			_, err := FrontendClient.Bid(context.Background(), &proto.Amount{Amount: int32(amountToBid), Id: int32(client.id)})
+
+			if(err != nil){
+		
+				fmt.Printf("Auction has closed, you can ask for the result only")
+			}
 		} else if method == "result" {
-			FrontendClient.Result(context.Background(), &proto.Empty{})
+			amount,_ := FrontendClient.Result(context.Background(), &proto.Empty{})
+			fmt.Printf("The current highest bidder has id: %v with the highest bid: %v \n", amount.Id, amount.Amount)
 		} else {
-			//Throw e
 			fmt.Println("Invalid")
 		}
 
