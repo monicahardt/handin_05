@@ -95,7 +95,6 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 
 	var sCount = 0
 	var fCount = 0
-	var eCount = 0
 
 	// counts how many succesful, failed and exception bids there were in the servers
 	for i := 0; i < len(f.servers); i++ {
@@ -104,9 +103,6 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 		}
 		if f.bids[i].Ack == fail {
 			fCount++
-		}
-		if f.bids[i].Ack == exception {
-			eCount++
 		}
 	}
 
@@ -134,20 +130,8 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 		return &proto.Ack{Ack: fail}, nil
 	}
 
-	// checks if more than half of the servers respond were exception
-	// removes the one that was NOT exception, since it's deprecated
-	if eCount > (len(f.servers)/2) && eCount != 0 {
-		for i := 0; i < len(f.servers); i++ {
-			if f.bids[i].Ack != exception {
-				// disconnect the server on f.servers[i]
-				f.servers = append(f.servers[:i], f.servers[i+1:]...)
-			}
-		}
-		return &proto.Ack{Ack: exception}, nil
-	}
-
 	// else everyone answered something different and therefore they're all faulty
-	return &proto.Ack{Ack: exception}, nil
+	return &proto.Ack{Ack: fail}, errors.New("All the servers are faulty! Run!!")
 }
 
 // calls each of the server's Result() and finds the highest bid and bidder
@@ -199,7 +183,6 @@ func startFrontend(frontend *Frontend) {
 type ack string
 
 const (
-	fail      string = "fail"
-	success   string = "success"
-	exception string = "exception"
+	fail    string = "fail"
+	success string = "success"
 )

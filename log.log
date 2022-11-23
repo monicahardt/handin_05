@@ -29,3 +29,11 @@
 2022/11/23 15:41:22 Client 8181 bid 100
 2022/11/23 15:41:27 Client asked for result
 2022/11/23 15:41:27 client with id 8181 gave highest bid 100 
+2022/11/23 16:12:44 Frontend connected to server at port: 5000
+2022/11/23 16:12:44 Frontend connected to server at port: 5001
+2022/11/23 16:12:44 Frontend connected to server at port: 5002
+2022/11/23 16:12:44 Started frontend at port: 5010
+2022/11/23 16:12:58 Client 8181 bid 0
+2022/11/23 16:13:34 Client asked for result
+2022/11/23 16:13:34 client with id 0 gave highest bid 0 
+2022/11/23 16:13:34 Auction closed client 0 won with bid 0

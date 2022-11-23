@@ -3,6 +3,7 @@ package main
 import (
 	proto "HANDIN_05/proto"
 	"context"
+	"errors"
 	"flag"
 	"log"
 	"net"
@@ -70,9 +71,8 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 		log.Println("New highest bid, return success")
 		return &proto.Ack{Ack: success}, nil
 	}
-	log.Println("return exception")
 
-	return &proto.Ack{Ack: exception}, nil
+	return &proto.Ack{Ack: fail}, errors.New("Something is very wrong")
 }
 
 func (s *Server) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
@@ -84,7 +84,6 @@ func (s *Server) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, er
 type ack string
 
 const (
-	fail      string = "fail"
-	success   string = "success"
-	exception string = "exception"
+	fail    string = "fail"
+	success string = "success"
 )
