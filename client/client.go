@@ -29,12 +29,12 @@ func main() {
 	flag.Parse()
 
 	client := &Client{
-		id:         1,
+		id:         *clientPort,
 		portNumber: *clientPort,
 	}
 
 	go connectToFrontend(client)
-	fmt.Println("Connected to frontend")
+	log.Printf("Client: %v connected to frontend", client.id)
 
 	for {
 
@@ -55,8 +55,8 @@ func connectToFrontend(client *Client) {
 		method := scanner.Text()
 
 		if method == "bid" {
-			//amountToBid, _ := strconv.ParseInt(scanner.Text(), 10, 0)
-			FrontendClient.Bid(context.Background(), &proto.Amount{Amount: int32(5)})
+
+			FrontendClient.Bid(context.Background(), &proto.Amount{Amount: int32(5), Id: int32(client.id)})
 		} else if method == "result" {
 			FrontendClient.Result(context.Background(), &proto.Empty{})
 		} else {
