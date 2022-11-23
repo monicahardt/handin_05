@@ -25,9 +25,6 @@ func main() {
 
 	flag.Parse()
 
-	// highestBid := 0
-	// highestBidder := -1
-
 	server := &Server{
 		name: "serverName",
 		port: *port,
@@ -59,19 +56,11 @@ func startServer(server *Server) {
 
 }
 
+// the bid method in the server checks if the bid placed by the client is a succesful bid, failed bid or an exception
+// updates the highestBid and highestBidder value if the placed bid is a success
+// returns the Ack enum corresponding to the bid
 func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
 
-	// if(s.port%5000==0){
-	// 	fmt.Println("We have uneven server that returns wierd shit")
-	// 	return &proto.Ack{Ack: exception},nil
-	// }
-	// tager biddet ind
-	// checker om biddet er skarpt større end det registrerede bid
-	// hvis det er, returnerer success
-	// hvis biddet er mindre end eller lig det registrerede bid
-	// returner fail
-	// hvis programmet crasher
-	// returner exception
 	if bid.Amount <= s.highestBid {
 		log.Println("return fail")
 		return &proto.Ack{Ack: fail}, nil
@@ -80,10 +69,8 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 		s.highestBidder = bid.Id
 		log.Println("New highest bid, return success")
 		return &proto.Ack{Ack: success}, nil
-	} 
+	}
 	log.Println("return exception")
-
-	// how do we handle the exception for system crash?
 
 	return &proto.Ack{Ack: exception}, nil
 }

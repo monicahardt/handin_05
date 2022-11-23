@@ -1,212 +1,23 @@
-2022/11/23 12:25:37 Frontend connected to server at port: 5001
-2022/11/23 12:25:37 Frontend connected to server at port: 5002
-2022/11/23 12:25:37 Frontend connected to server at port: 5003
-2022/11/23 12:25:37 Started frontend at port: 5010
-2022/11/23 12:25:57 Client asked for result
-2022/11/23 12:25:57 client with id 0 gave highest bid 0 
-2022/11/23 12:25:57 Auction closed client 0 won with bid 0
-2022/11/23 12:26:18 Frontend connected to server at port: 5001
-2022/11/23 12:26:18 Frontend connected to server at port: 5002
-2022/11/23 12:26:18 Frontend connected to server at port: 5003
-2022/11/23 12:26:18 Started frontend at port: 5010
-2022/11/23 12:26:27 Client 8181 bid 10
-2022/11/23 12:26:34 Client 8181 bid 9
-2022/11/23 12:26:38 Client asked for result
-2022/11/23 12:26:38 client with id 8181 gave highest bid 10 
-2022/11/23 12:26:38 Auction closed client 8181 won with bid 10
-2022/11/23 12:26:42 Client 8181 bid -1
-2022/11/23 12:26:44 Client 8181 bid 100
-2022/11/23 12:26:54 Client asked for result
-2022/11/23 12:26:54 client with id 8181 gave highest bid 100 
-2022/11/23 12:27:27 Client asked for result
-2022/11/23 12:27:27 client with id 8181 gave highest bid 100 
-2022/11/23 13:16:19 Frontend connected to server at port: 5001
-2022/11/23 13:16:19 Frontend connected to server at port: 5002
-2022/11/23 13:16:19 Frontend connected to server at port: 5003
-2022/11/23 13:16:19 Started frontend at port: 8181
-2022/11/23 13:17:19 Client 4040 bid 10
-2022/11/23 13:20:36 Frontend connected to server at port: 5001
-2022/11/23 13:20:36 Frontend connected to server at port: 5002
-2022/11/23 13:20:36 Frontend connected to server at port: 5003
-2022/11/23 13:20:36 Started frontend at port: 8181
-2022/11/23 13:20:42 Client 4040 bid 10
-2022/11/23 13:21:07 Client 4040 bid 100
-2022/11/23 13:27:28 Frontend connected to server at port: 5001
-2022/11/23 13:27:28 Frontend connected to server at port: 5002
-2022/11/23 13:27:28 Frontend connected to server at port: 5003
-2022/11/23 13:27:28 Started frontend at port: 8181
-2022/11/23 13:28:02 Client 4040 bid 10
-2022/11/23 13:29:51 Frontend connected to server at port: 5001
-2022/11/23 13:29:51 Frontend connected to server at port: 5002
-2022/11/23 13:29:51 Frontend connected to server at port: 5003
-2022/11/23 13:29:51 Started frontend at port: 8181
-2022/11/23 13:29:58 Client 4040 bid 20
-2022/11/23 13:37:07 Frontend connected to server at port: 5001
-2022/11/23 13:37:07 Frontend connected to server at port: 5002
-2022/11/23 13:37:07 Frontend connected to server at port: 5003
-2022/11/23 13:37:07 Started frontend at port: 8181
-2022/11/23 13:37:16 Client 4040 bid 100
-2022/11/23 13:37:42 Client 4040 bid 5
-2022/11/23 13:37:55 Client asked for result
-2022/11/23 13:37:55 client with id 4040 gave highest bid 100 
-2022/11/23 13:42:23 Started frontend at port: 8181
-2022/11/23 13:42:23 Frontend connected to server at port: 5001
-2022/11/23 13:42:23 Frontend connected to server at port: 5002
-2022/11/23 13:42:23 Frontend connected to server at port: 5003
-2022/11/23 13:42:35 Client 4040 bid 100
-2022/11/23 13:43:30 Frontend connected to server at port: 5001
-2022/11/23 13:43:30 Frontend connected to server at port: 5002
-2022/11/23 13:43:30 Frontend connected to server at port: 5003
-2022/11/23 13:43:30 Started frontend at port: 8181
-2022/11/23 13:43:35 Client 4040 bid 100
-2022/11/23 13:43:55 Client 4040 bid 200
-2022/11/23 13:44:37 Frontend connected to server at port: 5001
-2022/11/23 13:44:37 Frontend connected to server at port: 5002
-2022/11/23 13:44:37 Frontend connected to server at port: 5003
-2022/11/23 13:44:37 Started frontend at port: 8181
-2022/11/23 13:44:40 Client 4040 bid 300
-2022/11/23 13:44:56 Client 4040 bid 400
-2022/11/23 13:48:54 Frontend connected to server at port: 5001
-2022/11/23 13:48:54 Frontend connected to server at port: 5002
-2022/11/23 13:48:54 Frontend connected to server at port: 5003
-2022/11/23 13:48:54 Started frontend at port: 8181
-2022/11/23 13:49:09 Client 4040 bid 100
-2022/11/23 13:49:39 Client 4040 bid 105
-2022/11/23 13:51:44 Frontend connected to server at port: 5001
-2022/11/23 13:51:44 Frontend connected to server at port: 5002
-2022/11/23 13:51:44 Frontend connected to server at port: 5003
-2022/11/23 13:51:44 Started frontend at port: 8181
-2022/11/23 13:51:54 Client 4040 bid 200
-2022/11/23 13:52:12 Client 4040 bid 400
-2022/11/23 13:53:20 Frontend connected to server at port: 5001
-2022/11/23 13:53:20 Frontend connected to server at port: 5002
-2022/11/23 13:53:20 Frontend connected to server at port: 5003
-2022/11/23 13:53:20 Started frontend at port: 8181
-2022/11/23 13:53:28 Frontend connected to server at port: 5001
-2022/11/23 13:53:28 Frontend connected to server at port: 5002
-2022/11/23 13:53:28 Frontend connected to server at port: 5003
-2022/11/23 13:53:28 Started frontend at port: 8181
-2022/11/23 13:53:38 Client 4040 bid 500
-2022/11/23 13:53:58 Client 4040 bid 600
-2022/11/23 13:54:16 Client 4040 bid 200
-2022/11/23 13:54:32 Client asked for result
-2022/11/23 13:54:32 client with id 4040 gave highest bid 600 
-2022/11/23 14:00:40 Frontend connected to server at port: 5001
-2022/11/23 14:00:40 Frontend connected to server at port: 5002
-2022/11/23 14:00:40 Frontend connected to server at port: 5003
-2022/11/23 14:00:40 Started frontend at port: 8181
-2022/11/23 14:00:51 Client 4040 bid 100
-2022/11/23 14:01:00 Client 4040 bid 50
-2022/11/23 14:01:06 Client asked for result
-2022/11/23 14:01:06 client with id 4040 gave highest bid 100 
-2022/11/23 14:01:30 Client asked for result
-2022/11/23 14:03:10 Frontend connected to server at port: 5001
-2022/11/23 14:03:10 Frontend connected to server at port: 5002
-2022/11/23 14:03:10 Frontend connected to server at port: 5003
-2022/11/23 14:03:10 Started frontend at port: 8181
-2022/11/23 14:03:16 Client 4040 bid 100
-2022/11/23 14:03:22 Client 4040 bid 50
-2022/11/23 14:03:28 Client asked for result
-2022/11/23 14:03:28 client with id 4040 gave highest bid 100 
-2022/11/23 14:04:00 Client asked for result
-2022/11/23 14:04:00 client with id 4040 gave highest bid 100 
-2022/11/23 14:04:00 Auction closed client 4040 won with bid 100
-2022/11/23 14:07:22 Frontend connected to server at port: 5001
-2022/11/23 14:07:22 Frontend connected to server at port: 5002
-2022/11/23 14:07:22 Frontend connected to server at port: 5003
-2022/11/23 14:07:22 Started frontend at port: 8181
-2022/11/23 14:08:07 Client 4040 bid 100
-2022/11/23 14:08:11 Client asked for result
-2022/11/23 14:08:11 client with id 4040 gave highest bid 100 
-2022/11/23 14:08:12 Client asked for result
-2022/11/23 14:08:12 client with id 4040 gave highest bid 100 
-2022/11/23 14:08:12 Auction closed client 4040 won with bid 100
-2022/11/23 14:18:25 Frontend connected to server at port: 5000
-2022/11/23 14:18:25 Frontend connected to server at port: 5001
-2022/11/23 14:18:25 Frontend connected to server at port: 5002
-2022/11/23 14:18:25 Started frontend at port: 8181
-2022/11/23 14:18:38 Client 4040 bid 100
-2022/11/23 14:28:08 Frontend connected to server at port: 5000
-2022/11/23 14:28:08 Frontend connected to server at port: 5001
-2022/11/23 14:28:08 Frontend connected to server at port: 5002
-2022/11/23 14:28:08 Started frontend at port: 8181
-2022/11/23 14:28:55 Client 4040 bid 100
-2022/11/23 14:28:58 Client asked for result
-2022/11/23 14:28:58 client with id 0 gave highest bid 0 
-2022/11/23 14:28:58 Auction closed client 0 won with bid 0
-2022/11/23 14:29:53 Frontend connected to server at port: 5000
-2022/11/23 14:29:53 Frontend connected to server at port: 5001
-2022/11/23 14:29:53 Frontend connected to server at port: 5002
-2022/11/23 14:29:53 Started frontend at port: 8181
-2022/11/23 14:29:58 Client 4040 bid 100
-2022/11/23 14:30:25 Client 4040 bid 200
-2022/11/23 14:32:30 Frontend connected to server at port: 5000
-2022/11/23 14:32:30 Frontend connected to server at port: 5001
-2022/11/23 14:32:30 Frontend connected to server at port: 5002
-2022/11/23 14:32:30 Started frontend at port: 8181
-2022/11/23 14:32:51 Client 4040 bid 100
-2022/11/23 14:32:57 Client 4040 bid 200
-2022/11/23 14:33:04 Client asked for result
-2022/11/23 14:33:04 client with id 4040 gave highest bid 200 
-2022/11/23 14:33:35 Client 4040 bid 300
-2022/11/23 14:35:07 Frontend connected to server at port: 5000
-2022/11/23 14:35:07 Frontend connected to server at port: 5001
-2022/11/23 14:35:07 Frontend connected to server at port: 5002
-2022/11/23 14:35:07 Started frontend at port: 8181
-2022/11/23 14:35:14 Client 4040 bid 200
-2022/11/23 14:35:21 Client 4040 bid 300
-2022/11/23 14:35:25 Client asked for result
-2022/11/23 14:35:25 client with id 4040 gave highest bid 300 
-2022/11/23 14:35:37 Client 4040 bid 400
-2022/11/23 14:37:22 Client 4040 bid 600
-2022/11/23 14:37:31 Client asked for result
-2022/11/23 14:37:31 client with id 4040 gave highest bid 600 
-2022/11/23 14:37:38 Client 4040 bid 200
-2022/11/23 14:37:54 Client 4040 bid 800
-2022/11/23 14:38:01 Client asked for result
-2022/11/23 14:38:01 client with id 4040 gave highest bid 800 
-2022/11/23 14:48:49 Frontend connected to server at port: 5000
-2022/11/23 14:48:49 Frontend connected to server at port: 5001
-2022/11/23 14:48:49 Frontend connected to server at port: 5002
-2022/11/23 14:48:49 Started frontend at port: 8181
-2022/11/23 14:49:08 Client 4040 bid 100
-2022/11/23 14:49:12 Client asked for result
-2022/11/23 14:49:12 client with id 4040 gave highest bid 100 
-2022/11/23 14:49:29 Client 4040 bid 300
-2022/11/23 14:49:39 Client asked for result
-2022/11/23 14:49:39 client with id 4040 gave highest bid 300 
-2022/11/23 14:49:39 Auction closed client 4040 won with bid 300
-2022/11/23 14:51:23 Frontend connected to server at port: 5000
-2022/11/23 14:51:23 Frontend connected to server at port: 5001
-2022/11/23 14:51:23 Frontend connected to server at port: 5002
-2022/11/23 14:51:23 Started frontend at port: 8181
-2022/11/23 14:52:13 Client asked for result
-2022/11/23 14:52:13 client with id 0 gave highest bid 0 
-2022/11/23 14:52:13 Auction closed client 0 won with bid 0
-2022/11/23 14:52:49 Frontend connected to server at port: 5000
-2022/11/23 14:52:49 Frontend connected to server at port: 5001
-2022/11/23 14:52:49 Frontend connected to server at port: 5002
-2022/11/23 14:52:49 Started frontend at port: 8181
-2022/11/23 14:52:59 Frontend connected to server at port: 5000
-2022/11/23 14:52:59 Frontend connected to server at port: 5001
-2022/11/23 14:52:59 Frontend connected to server at port: 5002
-2022/11/23 14:52:59 Started frontend at port: 8181
-2022/11/23 14:53:03 Client 4040 bid 300
-2022/11/23 14:53:13 Client 4040 bid 400
-2022/11/23 14:53:49 Client asked for result
-2022/11/23 14:53:49 client with id 4040 gave highest bid 400 
-2022/11/23 14:53:49 Auction closed client 4040 won with bid 400
-2022/11/23 15:00:32 Frontend connected to server at port: 5000
-2022/11/23 15:00:32 Frontend connected to server at port: 5001
-2022/11/23 15:00:32 Frontend connected to server at port: 5002
-2022/11/23 15:00:32 Started frontend at port: 8181
-2022/11/23 15:00:46 Client 4040 bid 100
-2022/11/23 15:00:50 Client 4040 bid 200
-2022/11/23 15:00:52 Client asked for result
-2022/11/23 15:00:52 client with id 4040 gave highest bid 200 
-2022/11/23 15:00:55 Client 4040 bid 400
-2022/11/23 15:01:22 Client asked for result
-2022/11/23 15:01:22 client with id 4040 gave highest bid 400 
-2022/11/23 15:01:22 Auction closed client 4040 won with bid 400
-2022/11/23 15:01:34 Client asked for result
-2022/11/23 15:01:34 client with id 4040 gave highest bid 400 
+2022/11/23 15:23:50 Frontend connected to server at port: 5000
+2022/11/23 15:23:50 Frontend connected to server at port: 5001
+2022/11/23 15:23:50 Frontend connected to server at port: 5002
+2022/11/23 15:23:50 Started frontend at port: 5010
+2022/11/23 15:24:04 Client 8181 bid 10
+2022/11/23 15:24:13 Client 8181 bid 100
+2022/11/23 15:24:24 Client 8181 bid 300
+2022/11/23 15:24:32 Client 8181 bid 99
+2022/11/23 15:24:40 Client asked for result
+2022/11/23 15:26:01 Frontend connected to server at port: 5000
+2022/11/23 15:26:01 Started frontend at port: 5010
+2022/11/23 15:26:01 Frontend connected to server at port: 5001
+2022/11/23 15:26:01 Frontend connected to server at port: 5002
+2022/11/23 15:26:14 Client 8181 bid 100
+2022/11/23 15:26:28 Client 8181 bid 3000
+2022/11/23 15:26:30 Client 8181 bid 1
+2022/11/23 15:26:44 Client asked for result
+2022/11/23 15:26:44 client with id 8181 gave highest bid 3000 
+2022/11/23 15:26:51 Client asked for result
+2022/11/23 15:26:51 client with id 8181 gave highest bid 3000 
+2022/11/23 15:26:51 Auction closed client 8181 won with bid 3000
+2022/11/23 15:26:57 Client asked for result
+2022/11/23 15:26:57 client with id 8181 gave highest bid 3000 

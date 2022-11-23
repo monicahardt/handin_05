@@ -18,10 +18,10 @@ import (
 
 type Frontend struct {
 	proto.UnimplementedAuctionServer
-	name    string
-	port    int
-	servers []proto.AuctionClient
-	bids    []*proto.Ack
+	name            string
+	port            int
+	servers         []proto.AuctionClient
+	bids            []*proto.Ack
 	auctionIsClosed bool
 }
 
@@ -42,10 +42,10 @@ func main() {
 	defer cancel()
 
 	frontend := &Frontend{
-		name:    "frontdend",
-		port:    *port,
-		servers: make([]proto.AuctionClient, 0),
-		bids: make([]*proto.Ack, 0),
+		name:            "frontdend",
+		port:            *port,
+		servers:         make([]proto.AuctionClient, 0),
+		bids:            make([]*proto.Ack, 0),
 		auctionIsClosed: false,
 	}
 
@@ -61,65 +61,60 @@ func main() {
 		defer conn.Close()
 
 	}
-		time.Sleep(time.Second * 50)
-		frontend.auctionIsClosed = true
-		am, _ := frontend.Result(context.Background(), &proto.Empty{})
-		log.Printf("Auction closed client %v won with bid %v", am.Id, am.Amount)
-		fmt.Printf("Auction closed client %v won with bid %v", am.Id, am.Amount)
-	
-		for{
+	time.Sleep(time.Second * 50)
+	frontend.auctionIsClosed = true
+	am, _ := frontend.Result(context.Background(), &proto.Empty{})
+	log.Printf("Auction closed client %v won with bid %v", am.Id, am.Amount)
+	fmt.Printf("Auction closed client %v won with bid %v", am.Id, am.Amount)
 
-		}
-	//Note til eksamen!!!!!!
-	//ikke brug port 5000
+	for {
+
+	}
 }
 
 func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
+	// boolean to check if the auction is closed
 	if f.auctionIsClosed {
 		return &proto.Ack{Ack: fail}, errors.New("Auction is closed")
 	}
 	f.bids = make([]*proto.Ack, 0)
 	log.Printf("Client %v bid %v", bid.Id, bid.Amount)
-	fmt.Printf("printing number of servers in the slice: %v\n", len(f.servers))
+
+	// for each server in the slice, we call the server's bid()
 	for index, s := range f.servers {
 		ack, err := s.Bid(ctx, bid)
-		//tried calling bid on a server that has crashed
-		if(err != nil){
-			fmt.Println("A server crashed, try to remove from slice")
+
+		// if err != nil the server has crashed and we have to remove it from the slice
+		// else the server is still running, add it to the slice
+		if err != nil {
 			f.servers = append(f.servers[:index], f.servers[index+1:]...)
-			fmt.Printf("printing size of slice after removal: %v \n", len(f.servers))
 		} else {
 			f.bids = append(f.bids, ack)
 		}
-
-		// hvis ack allerede findes, tæl op
-		// hvis ack findes findes i mappet, så tæl dens value en op
 	}
-
 
 	var sCount = 0
 	var fCount = 0
 	var eCount = 0
 
+	// counts how many succesful, failed and exception bids there were in the servers
 	for i := 0; i < len(f.servers); i++ {
-		if (f.bids[i].Ack == success) {
+		if f.bids[i].Ack == success {
 			sCount++
 		}
-		if (f.bids[i].Ack == fail) {
+		if f.bids[i].Ack == fail {
 			fCount++
 		}
-		if (f.bids[i].Ack == exception) {
+		if f.bids[i].Ack == exception {
 			eCount++
 		}
 	}
 
-	fmt.Printf("printing number of success: %v \n", sCount)
-
-
+	// checks if more than half of the servers respond were successfull
+	// removes the one that was NOT succesful, since it's deprecated
 	if sCount > (len(f.servers)/2) && sCount != 0 {
-		fmt.Println("succes was bigger than half")
 		for i := 0; i < len(f.servers); i++ {
-			if (f.bids[i].Ack != success) {
+			if f.bids[i].Ack != success {
 				// disconnect the server on f.servers[i]
 				f.servers = append(f.servers[:i], f.servers[i+1:]...)
 			}
@@ -127,10 +122,11 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 		return &proto.Ack{Ack: success}, nil
 	}
 
+	// checks if more than half of the servers respond were fail
+	// removes the one that was NOT fail, since it's deprecated
 	if fCount > (len(f.servers)/2) && fCount != 0 {
-		fmt.Println("fails was bigger")
 		for i := 0; i < len(f.servers); i++ {
-			if (f.bids[i].Ack != fail) {
+			if f.bids[i].Ack != fail {
 				// disconnect the server on f.servers[i]
 				f.servers = append(f.servers[:i], f.servers[i+1:]...)
 			}
@@ -138,10 +134,11 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 		return &proto.Ack{Ack: fail}, nil
 	}
 
+	// checks if more than half of the servers respond were exception
+	// removes the one that was NOT exception, since it's deprecated
 	if eCount > (len(f.servers)/2) && eCount != 0 {
-		fmt.Println("exception was bigger")
 		for i := 0; i < len(f.servers); i++ {
-			if (f.bids[i].Ack != exception) {
+			if f.bids[i].Ack != exception {
 				// disconnect the server on f.servers[i]
 				f.servers = append(f.servers[:i], f.servers[i+1:]...)
 			}
@@ -150,11 +147,12 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 	}
 
 	// else everyone answered something different and therefore they're all faulty
-	fmt.Println("At the end of bid, we're fuckd")
-
 	return &proto.Ack{Ack: exception}, nil
 }
 
+// calls each of the server's Result() and finds the highest bid and bidder
+// prints it to the terminal for the client to see
+// returns the highestBid and highestBidID
 func (f *Frontend) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
 	log.Println("Client asked for result")
 	highestBid := int32(0)
