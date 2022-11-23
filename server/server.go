@@ -60,8 +60,6 @@ func startServer(server *Server) {
 }
 
 func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error) {
-
-	fmt.Println("Bid method in server.go was called")
 	// tager biddet ind
 	// checker om biddet er skarpt større end det registrerede bid
 	// hvis det er, returnerer success
@@ -71,13 +69,16 @@ func (s *Server) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, error)
 	// returner exception
 
 	if bid.Amount > s.highestBid {
+		fmt.Println("We made it")
 		s.highestBid = bid.Amount
 		s.highestBidder = bid.Id
 
 		return &proto.Ack{Ack: success}, nil
 	} else if bid.Amount <= s.highestBid {
+		fmt.Println("We made it 2")
 		return &proto.Ack{Ack: fail}, nil
 	}
+	fmt.Println("We made it 3")
 
 	// how do we handle the exception for system crash?
 
