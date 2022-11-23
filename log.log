@@ -1,23 +1,22 @@
-2022/11/23 15:23:50 Frontend connected to server at port: 5000
-2022/11/23 15:23:50 Frontend connected to server at port: 5001
-2022/11/23 15:23:50 Frontend connected to server at port: 5002
-2022/11/23 15:23:50 Started frontend at port: 5010
-2022/11/23 15:24:04 Client 8181 bid 10
-2022/11/23 15:24:13 Client 8181 bid 100
-2022/11/23 15:24:24 Client 8181 bid 300
-2022/11/23 15:24:32 Client 8181 bid 99
-2022/11/23 15:24:40 Client asked for result
-2022/11/23 15:26:01 Frontend connected to server at port: 5000
-2022/11/23 15:26:01 Started frontend at port: 5010
-2022/11/23 15:26:01 Frontend connected to server at port: 5001
-2022/11/23 15:26:01 Frontend connected to server at port: 5002
-2022/11/23 15:26:14 Client 8181 bid 100
-2022/11/23 15:26:28 Client 8181 bid 3000
-2022/11/23 15:26:30 Client 8181 bid 1
-2022/11/23 15:26:44 Client asked for result
-2022/11/23 15:26:44 client with id 8181 gave highest bid 3000 
-2022/11/23 15:26:51 Client asked for result
-2022/11/23 15:26:51 client with id 8181 gave highest bid 3000 
-2022/11/23 15:26:51 Auction closed client 8181 won with bid 3000
-2022/11/23 15:26:57 Client asked for result
-2022/11/23 15:26:57 client with id 8181 gave highest bid 3000 
+2022/11/23 16:25:53 Frontend connected to server at port: 5001
+2022/11/23 16:25:53 Frontend connected to server at port: 5002
+2022/11/23 16:25:53 Frontend connected to server at port: 5003
+2022/11/23 16:25:53 Started frontend at port: 8181
+2022/11/23 16:26:11 Client 7000 bid 100
+2022/11/23 16:26:20 Client 7001 bid 200
+2022/11/23 16:26:43 Client 7000 bid 201
+2022/11/23 16:26:43 Server crahsed
+2022/11/23 16:26:43 Client asked for result
+2022/11/23 16:26:43 client with id 7000 gave highest bid 201 
+2022/11/23 16:26:43 Auction closed client 7000 won with bid 201
+2022/11/23 16:27:32 Frontend connected to server at port: 5001
+2022/11/23 16:27:32 Frontend connected to server at port: 5002
+2022/11/23 16:27:32 Frontend connected to server at port: 5003
+2022/11/23 16:27:32 Started frontend at port: 8181
+2022/11/23 16:27:43 Client 7000 bid 100
+2022/11/23 16:28:05 Client 7001 bid 150
+2022/11/23 16:28:05 Server crahsed
+2022/11/23 16:28:14 Client 7000 bid 201
+2022/11/23 16:28:22 Client asked for result
+2022/11/23 16:28:22 client with id 7000 gave highest bid 201 
+2022/11/23 16:28:22 Auction closed client 7000 won with bid 201
