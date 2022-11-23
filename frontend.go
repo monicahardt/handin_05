@@ -18,6 +18,7 @@ type Frontend struct {
 	name    string
 	port    int
 	servers []proto.AuctionClient
+	bids    []*proto.Ack
 }
 
 var port = flag.Int("port", 0, "server port number") // create the port that recieves the port that the client wants to access to
@@ -32,7 +33,10 @@ func main() {
 		name:    "frondend",
 		port:    *port,
 		servers: make([]proto.AuctionClient, 0),
+		bids:    make([]*proto.Ack, 0),
 	}
+
+
 	go startFrontend(frontend)
 	log.Printf("Frontend started")
 	fmt.Printf("Frontend started at port: %v", port)
@@ -61,11 +65,34 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 	fmt.Printf("Called method bid")
 	for _, s := range f.servers {
 		fmt.Println("There was a server in the slice")
+
 		ack, err := s.Bid(ctx, bid)
-		return ack, err
+		// hvis ack allerede findes, tæl op
+		// hvis ack findes findes i mappet, så tæl dens value en op
+
+		f.bids = append(f.bids, ack)
+
+		fmt.Println(f.bids) // check if the bids are added to the slice
 		//What to do here about the bid? Give acknowlegement back
 	}
-	return &proto.Ack{Ack: "hej"}, nil
+
+	for i := 0; i < 3; i++ {
+		for j := 
+	}
+
+	// var maxNumber = 0
+	// var acknowlegdement = ""
+
+	
+
+	// for b := range f.bids {
+	// 	if f.bids[b] > maxNumber {
+	// 		maxNumber = f.bids[b]
+	// 		acknowlegdement = b.Ack
+	// 	}
+	// }
+
+	return &proto.Ack{Ack: acknowlegdement}, nil
 }
 
 func (f *Frontend) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
@@ -96,3 +123,11 @@ func startFrontend(frontend *Frontend) {
 
 	}
 }
+
+type ack string
+
+const (
+	fail      string = "fail"
+	success   string = "success"
+	exception string = "exception"
+)

@@ -55,6 +55,7 @@ func connectToFrontend(client *Client) {
 		method := scanner.Text()
 
 		if method == "bid" {
+			scanner.Scan()
 			amountToBid, _ := strconv.ParseInt(scanner.Text(), 10, 0)
 			FrontendClient.Bid(context.Background(), &proto.Amount{Amount: int32(amountToBid)})
 		} else if method == "result" {
