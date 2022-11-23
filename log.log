@@ -1,0 +1,22 @@
+2022/11/23 12:25:37 Frontend connected to server at port: 5001
+2022/11/23 12:25:37 Frontend connected to server at port: 5002
+2022/11/23 12:25:37 Frontend connected to server at port: 5003
+2022/11/23 12:25:37 Started frontend at port: 5010
+2022/11/23 12:25:57 Client asked for result
+2022/11/23 12:25:57 client with id 0 gave highest bid 0 
+2022/11/23 12:25:57 Auction closed client 0 won with bid 0
+2022/11/23 12:26:18 Frontend connected to server at port: 5001
+2022/11/23 12:26:18 Frontend connected to server at port: 5002
+2022/11/23 12:26:18 Frontend connected to server at port: 5003
+2022/11/23 12:26:18 Started frontend at port: 5010
+2022/11/23 12:26:27 Client 8181 bid 10
+2022/11/23 12:26:34 Client 8181 bid 9
+2022/11/23 12:26:38 Client asked for result
+2022/11/23 12:26:38 client with id 8181 gave highest bid 10 
+2022/11/23 12:26:38 Auction closed client 8181 won with bid 10
+2022/11/23 12:26:42 Client 8181 bid -1
+2022/11/23 12:26:44 Client 8181 bid 100
+2022/11/23 12:26:54 Client asked for result
+2022/11/23 12:26:54 client with id 8181 gave highest bid 100 
+2022/11/23 12:27:27 Client asked for result
+2022/11/23 12:27:27 client with id 8181 gave highest bid 100 
