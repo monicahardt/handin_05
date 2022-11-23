@@ -36,7 +36,6 @@ func main() {
 		bids:    make([]*proto.Ack, 0),
 	}
 
-
 	go startFrontend(frontend)
 	log.Printf("Frontend started")
 	fmt.Printf("Frontend started at port: %v", port)
@@ -66,7 +65,7 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 	for _, s := range f.servers {
 		fmt.Println("There was a server in the slice")
 
-		ack, err := s.Bid(ctx, bid)
+		ack, _ := s.Bid(ctx, bid)
 		// hvis ack allerede findes, tæl op
 		// hvis ack findes findes i mappet, så tæl dens value en op
 
@@ -76,23 +75,55 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 		//What to do here about the bid? Give acknowlegement back
 	}
 
-	for i := 0; i < 3; i++ {
-		for j := 
+	var sCount = 0
+	var fCount = 0
+	var eCount = 0
+
+	for i := 0; i < len(f.servers); i++ {
+		if (f.bids[i] == &proto.Ack{Ack: success}) {
+			sCount++
+		}
+		if (f.bids[i] == &proto.Ack{Ack: fail}) {
+			fCount++
+		}
+		if (f.bids[i] == &proto.Ack{Ack: exception}) {
+			eCount++
+		}
 	}
 
-	// var maxNumber = 0
-	// var acknowlegdement = ""
+	if sCount > (len(f.servers)/2) && sCount != 0 {
+		for i := 0; i < len(f.servers); i++ {
+			if (f.bids[i] != &proto.Ack{Ack: success}) {
+				// disconnect the server on f.servers[i]
+				f.servers = append(f.servers[:i], f.servers[i+1:]...)
+			}
+		}
+		return &proto.Ack{Ack: success}, nil
+	}
 
-	
+	if fCount > (len(f.servers)/2) && fCount != 0 {
+		for i := 0; i < len(f.servers); i++ {
+			if (f.bids[i] != &proto.Ack{Ack: fail}) {
+				// disconnect the server on f.servers[i]
+				f.servers = append(f.servers[:i], f.servers[i+1:]...)
+			}
+		}
+		return &proto.Ack{Ack: fail}, nil
+	}
 
-	// for b := range f.bids {
-	// 	if f.bids[b] > maxNumber {
-	// 		maxNumber = f.bids[b]
-	// 		acknowlegdement = b.Ack
-	// 	}
-	// }
+	if eCount > (len(f.servers)/2) && eCount != 0 {
+		for i := 0; i < len(f.servers); i++ {
+			if (f.bids[i] != &proto.Ack{Ack: exception}) {
+				// disconnect the server on f.servers[i]
+				f.servers = append(f.servers[:i], f.servers[i+1:]...)
+			}
+		}
+		return &proto.Ack{Ack: exception}, nil
+	}
 
-	return &proto.Ack{Ack: acknowlegdement}, nil
+	// else everyone answered something different and therefore they're all faulty
+	fmt.Println("At the end of bid, we're fuckd")
+	return &proto.Ack{Ack: exception}, nil
 }
 
 func (f *Frontend) Result(ctx context.Context, in *proto.Empty) (*proto.Amount, error) {
