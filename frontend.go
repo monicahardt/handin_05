@@ -52,8 +52,8 @@ func main() {
 	go startFrontend(frontend)
 
 	for i := 0; i < 3; i++ {
-		conn, err := grpc.Dial("localhost:"+strconv.Itoa(5000+i), grpc.WithTransportCredentials(insecure.NewCredentials()))
-		log.Printf("Frontend connected to server at port: %v\n", 5000+i)
+		conn, err := grpc.Dial("localhost:"+strconv.Itoa(5001+i), grpc.WithTransportCredentials(insecure.NewCredentials()))
+		log.Printf("Frontend connected to server at port: %v\n", 5001+i)
 		frontend.servers = append(frontend.servers, proto.NewAuctionClient(conn))
 		if err != nil {
 			log.Printf("Could not connect: %s", err)
@@ -87,6 +87,7 @@ func (f *Frontend) Bid(ctx context.Context, bid *proto.Amount) (*proto.Ack, erro
 		// if err != nil the server has crashed and we have to remove it from the slice
 		// else the server is still running, add it to the slice
 		if err != nil {
+			log.Printf("Server crahsed")
 			f.servers = append(f.servers[:index], f.servers[index+1:]...)
 		} else {
 			f.bids = append(f.bids, ack)
